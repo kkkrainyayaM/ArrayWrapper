@@ -8,9 +8,11 @@ public class ArrayService {
     private static final int LIMIT = 30;
 
     public static int[] getAllFibonacci() {
+
         int[] f = new int[LIMIT];
         f[0] = 0;
         f[1] = 1;
+
         for (int i = 2; i < LIMIT; i++) {
             f[i] = f[i - 1] + f[i - 2];
         }
@@ -18,7 +20,9 @@ public class ArrayService {
     }
 
     public static int[] fillArrayRandom() {
+
         int[] array = new int[LIMIT];
+
         for (int i = 0; i < LIMIT - 1; i++) {
             array[i] = (int) (Math.random() * 100);
         }
@@ -26,7 +30,9 @@ public class ArrayService {
     }
 
     public static int[] fillArrayFromFile() {
+
         int[] array = new int[LIMIT];
+
         try {
             FileReader fileReader = new FileReader( "array.txt" );
             int num, i = 0;

@@ -2,7 +2,7 @@ package by.javatr.task1.entities;
 
 import java.util.Arrays;
 
-public class Array {
+public final class Array {
     private static final int INITIAL_SIZE = 30;
     private int[] array = new int[]{};
 
@@ -32,6 +32,7 @@ public class Array {
 
     public int getMin() {
         int min = 0;
+
         for (int i = 1; i < array.length - 1; i++) {
             if( array[i - 1] < array[i] ) {
                 min = array[i - 1];
