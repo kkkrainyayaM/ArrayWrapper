@@ -1,25 +1,19 @@
-package by.javatr.task1.util;
+package by.javatr.task1.entities;
 
 import java.util.Arrays;
 
 public class Array {
-    private static final int initialSize = 30;
-    private int[] array;
+    private static final int INITIAL_SIZE = 30;
+    private int[] array = new int[]{};
 
     public Array(int[] array) {
-        setArray( array );
+        if( array == null ) throw new IllegalArgumentException( "array couldn't be null" );
+        this.array = array;
     }
 
-    public Array(int size, int[] array) {
+    public Array(int size) {
         if( size == 0 ) throw new IllegalArgumentException( "size couldn't be null" );
         this.array = new int[size];
-        for (int i = 0; i < size - 1; i++) {
-            this.array[i] = array[i];
-        }
-    }
-
-    public Array() {
-        array = new int[initialSize];
     }
 
     public int[] getArray() {
@@ -39,7 +33,9 @@ public class Array {
     public int getMin() {
         int min = 0;
         for (int i = 1; i < array.length - 1; i++) {
-            if( array[i - 1] < array[i] ) min = array[i - 1];
+            if( array[i - 1] < array[i] ) {
+                min = array[i - 1];
+            }
         }
         return min;
     }
@@ -47,17 +43,19 @@ public class Array {
     public int getMax() {
         int max = 0;
         for (int i = 1; i < array.length - 1; i++) {
-            if( array[i - 1] > array[i] ) max = array[i - 1];
+            if( array[i - 1] > array[i] ) {
+                max = array[i - 1];
+            }
         }
         return max;
     }
 
     public int[] getFibonacci() {
-        int[] newArray = new int[initialSize];
+        int[] newArray = new int[INITIAL_SIZE];
         int count = 0;
         int[] fibonachi = ArrayService.getAllFibonacci();
-        for (int i = 0; i < initialSize - 1; i++) {
-            for (int j = 0; j < initialSize - 1; j++) {
+        for (int i = 0; i < INITIAL_SIZE - 1; i++) {
+            for (int j = 0; j < INITIAL_SIZE - 1; j++) {
                 if( array[i] == array[j] ) {
                     newArray[count++] = array[i];
                     break;
@@ -68,7 +66,7 @@ public class Array {
     }
 
     public int[] getThreeeDgNumWithNoSameDg() {
-        int[] newArray = new int[initialSize];
+        int[] newArray = new int[INITIAL_SIZE];
         int count = 0;
         for (int i = 0; i < array.length - 1; i++) {
             if( array[i] > 99 && array[i] < 1000 ) {
@@ -83,7 +81,7 @@ public class Array {
     }
 
     public int[] getAllSimpleNums() {
-        int[] simple = new int[initialSize];
+        int[] simple = new int[INITIAL_SIZE];
         int count = 0;
         boolean key = true;
         for (int i = 0; i < array.length - 1; i++) {
@@ -93,10 +91,10 @@ public class Array {
                     break;
                 }
             }
-            if( key = true ) {
+            if( key ) {
+                simple[count] = array[i];
+                count++;
             }
-            simple[count] = array[i];
-            count++;
         }
         return simple;
     }
@@ -157,7 +155,7 @@ public class Array {
                 for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
                     array[j] = array[j - gap];
 
-               
+
                 array[j] = temp;
             }
         }
@@ -180,7 +178,7 @@ public class Array {
     @Override
     public String toString() {
         return "Array{" +
-                "util=" + Arrays.toString( array ) +
+                "entities=" + Arrays.toString( array ) +
                 '}';
     }
 }

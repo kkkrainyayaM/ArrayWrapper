@@ -1,7 +1,7 @@
 package by.javatr.task1.runner;
 
-import by.javatr.task1.util.Array;
-import by.javatr.task1.util.ArrayService;
+import by.javatr.task1.entities.Array;
+import by.javatr.task1.entities.ArrayService;
 
 import java.util.Scanner;
 
@@ -18,7 +18,7 @@ public class Main {
         for (int i = 0; i < size; i++) {
             array[i] = input.nextInt();
         }
-        Array array3 = new Array( size, array );
+        Array array3 = new Array( array );
         System.out.println( array1.toString() );
         System.out.println( array2.toString() );
         System.out.println( array3.toString() );
