@@ -1,18 +1,20 @@
 package by.javatr.task1.entities;
 
+import by.javatr.exceptions.NullArgumentException;
+
 import java.util.Arrays;
 
 public final class Array {
     private static final int INITIAL_SIZE = 30;
-    private int[] array = new int[]{};
+    private int[] array;
 
-    public Array(int[] array) {
-        if( array == null ) throw new IllegalArgumentException( "array couldn't be null" );
+    public Array(int[] array) throws NullArgumentException {
+        if( array == null ) throw new NullArgumentException( "array couldn't be null" );
         this.array = array;
     }
 
-    public Array(int size) {
-        if( size == 0 ) throw new IllegalArgumentException( "size couldn't be null" );
+    public Array(int size) throws NullArgumentException {
+        if( size == 0 ) throw new NullArgumentException( "size couldn't be null" );
         this.array = new int[size];
     }
 
@@ -20,19 +22,18 @@ public final class Array {
         return array;
     }
 
-    public void setArray(int[] arr) {
-        if( arr == null ) throw new IllegalArgumentException( "array couldn't be null" );
+    public void setArray(int[] arr) throws NullArgumentException {
+        if( arr == null ) throw new NullArgumentException( "array couldn't be null" );
         this.array = arr;
     }
 
-
-    public int getIndexOf(int key) {
+    public int getIndexOf(int key) throws NullArgumentException {
+        if( key == 0 ) throw new NullArgumentException( "size couldn't be null" );
         return binarySearch( shellSort(), key );
     }
 
     public int getMin() {
         int min = 0;
-
         for (int i = 1; i < array.length - 1; i++) {
             if( array[i - 1] < array[i] ) {
                 min = array[i - 1];
@@ -155,8 +156,6 @@ public final class Array {
                 int j;
                 for (j = i; j >= gap && array[j - gap] > temp; j -= gap)
                     array[j] = array[j - gap];
-
-
                 array[j] = temp;
             }
         }
@@ -166,14 +165,16 @@ public final class Array {
     @Override
     public boolean equals(Object o) {
         if( this == o ) return true;
-        if( !(o.getClass() == Array.class) ) return false;
+        if( o.getClass() != this.getClass() ) return false;
         Array array1 = (Array) o;
-        return Arrays.equals( getArray(), array1.getArray() );
+        return array == array1.array;
     }
 
     @Override
     public int hashCode() {
-        return Arrays.hashCode( getArray() );
+        final int prime = 31;
+        int result = 1;
+        return prime * result + array.hashCode();
     }
 
     @Override

@@ -6,8 +6,10 @@ import java.io.IOException;
 public class ArrayService {
 
     private static final int LIMIT = 30;
+    private static final String FILE_NAME = "C:/Users/rizhi/Documents/Training/" +
+            "Day6ProjectKrainyaya/src/by/javatr/task1/resources/array.txt";
 
-    public static int[] getAllFibonacci() {
+    static int[] getAllFibonacci() {
 
         int[] f = new int[LIMIT];
         f[0] = 0;
@@ -34,7 +36,7 @@ public class ArrayService {
         int[] array = new int[LIMIT];
 
         try {
-            FileReader fileReader = new FileReader( "array.txt" );
+            FileReader fileReader = new FileReader( FILE_NAME );
             int num, i = 0;
             while ((num = fileReader.read()) != -1) {
                 array[i] = num;
